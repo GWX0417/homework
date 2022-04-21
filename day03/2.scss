@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    max-width: 750px;
+    min-width: 350px;
+    font-size: 15px;
+    background-color: #f2f2f2;
+}
+//头部区域
+.box{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    background-color: #fff;
+    img{
+        width: 35px;
+        height: 35px;
+    }
+    span{
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 5px;
+    }
+}
+// 第一模块
+.box1{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+// 第二模块
+.box2{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    padding-left: 25px;
+    background-color: #fff;
+    border-bottom:0.5px solid rgb(90, 90, 90);
+    .left{
+        padding-top: 25px;
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .right{
+        padding-left: 30px;
+        .shang{
+            padding-top: 18px;
+            span{
+                font-size: 18px;
+            }
+            a{
+                padding-left: 10px;
+                color: #666;
+            }
+            img{
+                padding-left: 20px;
+            }
+        }
+        .xia{
+            padding-top: 15px;
+            .span1{
+                width: 70px;
+                height: 30px;
+                font-size: 13px;
+                color: orange;
+                background-color: rgb(238, 197, 121);
+            }
+            .span2{
+                width: 70px;
+                height: 30px;
+                font-size: 13px;
+                color: rgb(224, 68, 68);
+                background-color: rgb(226, 128, 115);
+            }
+            .span3{
+                width: 70px;
+                height: 30px;
+                font-size: 13px;
+                color: rgb(187, 49, 171);
+                background-color: rgb(231, 137, 207);
+            }
+        }
+    }
+}

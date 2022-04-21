@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 700px;
+            height: 350px;
+            border: 1px solid #000;
+            display: flex;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .item {
+            margin: 10px;
+            width: 20%;
+            display: flex;
+            position: relative;
+            border: 1px solid red;
+        }
+
+        #aa {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(70, 69, 69, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+        <div class="item">
+            <img src="./1.jpg" alt="">
+            <div id="aa"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let aa = document.querySelectorAll('#aa')
+    for (var i = 0; i < aa.length; i++) {
+        aa[i].onmouseover = function () {
+            for (let j = 0; j < aa.length; j++) {
+                aa[j].style.background = 'rgba(70, 69, 69, 0.8)';
+            }
+            this.style.background = 'rgba(70, 69, 69, 0)';
+        }
+        aa[i].onmouseout = function () {
+            for (var l = 0; l < aa.length; l++) {
+                aa[l].style.background = 'rgba(70, 69, 69, 0.8)';
+            }
+        }
+    }
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #aa {
+            margin: 0 auto;
+        }
+
+        #box {
+            width: 300px;
+            height: 50px;
+            display: flex;
+        }
+
+        #a {
+            margin: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+        }
+
+        #b {
+            margin: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+        }
+
+        #c {
+            margin: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+        }
+
+        table {
+            color: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aa">
+        <div id="box">
+            <div id="a"></div>
+            <div id="b"></div>
+            <div id="c"></div>
+        </div>
+        <table border="1" width="500px" cellspacing="0">
+            <tr>
+                <td>新闻</td>
+                <td>娱乐</td>
+                <td>体育</td>
+                <td>电影</td>
+                <td>音乐</td>
+                <td>旅游</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script type="text/javascript">
+    var aa = document.getElementById("a")
+    var bb = document.getElementById("b")
+    var cc = document.getElementById("c")
+    var body = document.body
+    aa.onclick = function () {
+        body.style.background = "red"
+    }
+    bb.onclick = function () {
+        body.style.background = "green"
+    }
+    cc.onclick = function () {
+        body.style.background = "#000"
+    }
+</script>
+
+</html>
