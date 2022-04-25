@@ -14,7 +14,20 @@ export default new Router({
     {
       path: '/admin',
       name: 'admin',
-      component:()=>import('../src/views/admin.vue')
-    },  
+      component:()=>import('../src/views/admin.vue'),
+      redirect:'/welcome',
+      children:[
+        {
+          path: '/welcome',
+          name: 'welcome',
+          component:()=>import('../src/views/welcome.vue')
+        },
+        {
+          path: '/users',
+          name: 'users',
+          component:()=>import('../src/views/users.vue')
+        },
+      ]
+    },
   ]
 })
