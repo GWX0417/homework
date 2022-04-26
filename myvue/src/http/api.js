@@ -27,7 +27,7 @@ export function UsersApi(params){
     params
   })
 }
-//封装单个删除Api
+//封装单个用户删除Api
 export function delApi(data){
   return request({
     url:"users/"+data,
@@ -39,5 +39,67 @@ export function ztApi(data){
   return request({
     url:`users/${data.id}/state/${data.type}`,
     method:"PUT"
+  })
+}
+//封装添加用户Api
+export function tjApi(data){
+  return request({
+    url:"users",
+    method:"POST",
+    data
+  })
+}
+//封装修改用户Api
+export function xgApi(data){
+  return request({
+    url:`users/${data.id}`,
+    method:"PUT",
+    data
+  })
+}
+//封装角色列表渲染Api
+export function jsApi(){
+  return request({
+    url:"roles",
+    method:"GET",
+  })
+}
+//封装角色添加用户Api
+export function jstjApi(data){
+  return request({
+    url:"roles",
+    method:"POST",
+    data
+  })
+}
+//封装删除角色Api
+export function jsdelApi(data){
+  console.log(data);
+  return request({
+    url:"roles/"+data,
+    method:"DELETE"
+  })
+}
+//封装修改角色Api
+export function jsxgApi(data){
+  return request({
+    url:`roles/${data.id}`,
+    method:"PUT",
+    data
+  })
+}
+//封装渲染权限Api
+export function qxApi(type){
+  return request({
+    url:`rights/${type}`,
+    method:"GET"
+  })
+}
+//封装渲染商品Api
+export function goodsApi(params){
+  return request({
+    url:"goods",
+    method:"GET",
+    params
   })
 }

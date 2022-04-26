@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container>
+    <el-container style="min-height:800px">
       <el-header
         >企业后台管理系统
         <el-button type="info">退出登录</el-button>

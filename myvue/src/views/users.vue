@@ -40,14 +40,19 @@
               active-color="#13ce66"
               v-model="scope.row.mg_state"
               inactive-color="#ff4949"
-              @change="zt({id:scope.row.id,type:scope.row.mg_state})"
+              @change="zt({ id: scope.row.id, type: scope.row.mg_state })"
             >
             </el-switch>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" size="mini">
+            <el-button
+              type="primary"
+              @click="xg(scope.row)"
+              icon="el-icon-edit"
+              size="mini"
+            >
             </el-button>
             <el-button
               type="danger"
@@ -57,7 +62,7 @@
             ></el-button>
             <el-button
               type="warning"
-              icon="el-icon-star-off"
+              icon="el-icon-s-tools"
               size="mini"
             ></el-button>
           </template>
@@ -79,7 +84,12 @@
     </el-card>
     <!-- 模态框区域 -->
     <el-dialog title="添加用户" :visible.sync="dialogFormVisible">
-      <el-form label-width="80px" :model="user" :rules="loginFromRules">
+      <el-form
+        label-width="80px"
+        :model="user"
+        ref="refuser"
+        :rules="loginFromRules"
+      >
         <el-form-item label="用户名" prop="username">
           <el-input autocomplete="off" v-model="user.username"></el-input>
         </el-form-item>
@@ -95,17 +105,43 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false"
-          >确 定</el-button
-        >
+        <el-button type="primary" @click="add">确 定</el-button>
       </div>
     </el-dialog>
     <!-- 模态框区域 -->
+    <!-- 修改模态框区域 -->
+    <el-dialog title="修改用户" :visible.sync="xgFormVisible">
+      <el-form
+        label-width="80px"
+        :model="Fromuser"
+        ref="refuser"
+        :rules="loginFromRules"
+      >
+        <el-form-item label="用户名" prop="username">
+          <el-input
+            :disabled="true"
+            autocomplete="off"
+            v-model="Fromuser.username"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input autocomplete="off" v-model="Fromuser.email"></el-input>
+        </el-form-item>
+        <el-form-item label="电话" prop="mobile">
+          <el-input autocomplete="off" v-model="Fromuser.mobile"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="xgFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addxg">确 定</el-button>
+      </div>
+    </el-dialog>
+    <!-- 修改模态框区域 -->
   </div>
 </template>
 
 <script>
-import { UsersApi, delApi ,ztApi} from "@/http/api";
+import { UsersApi, delApi, ztApi, tjApi, xgApi } from "@/http/api";
 export default {
   data() {
     return {
@@ -120,31 +156,34 @@ export default {
       total: 0,
       //模态框显示和隐藏
       dialogFormVisible: false,
+      //修改模态框的显示隐藏
+      xgFormVisible: false,
       //添加用户
-      user:{
-          username:"",
-          password:"",
-          email:"",
-          mobile:""
+      user: {
+        username: "",
+        password: "",
+        email: "",
+        mobile: "",
+      },
+      //修改用户
+      Fromuser: {
+        username: "",
+        email: "",
+        mobile: "",
+        id: 0,
       },
       //添加用户表单验证
-      loginFromRules:{
-          username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' },
-          ],
-          password: [
-            { required: true, message: '请输入密码', trigger: 'blur' },
-          ],
-          email: [
-            { required: true, message: '请输入邮箱', trigger: 'blur' },
-          ],
-          mobile: [
-            { required: true, message: '请输入手机号', trigger: 'blur' },
-          ],
-      }
+      loginFromRules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+        ],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
+        mobile: [{ required: true, message: "请输入手机号", trigger: "blur" }],
+      },
     };
   },
-  mounted() {
+  created() {
     this.getList();
   },
   methods: {
@@ -188,14 +227,43 @@ export default {
           });
         });
     },
-    //添加用户
+    //点击添加用户模态框显示
     addUsers() {
       this.dialogFormVisible = true;
     },
+    //添加用户
+    add() {
+      this.$refs.refuser.validate((valid) => {
+        if (!valid) return false;
+        tjApi(this.user);
+        this.getList();
+        this.dialogFormVisible = false;
+        this.user = {
+          username: "",
+          password: "",
+          email: "",
+          mobile: "",
+        };
+      });
+    },
     //状态
-    zt(obj){
-        ztApi(obj)
-    }
+    zt(obj) {
+      ztApi(obj);
+    },
+    //修改用户
+    xg(obj) {
+      this.xgFormVisible = true;
+      this.Fromuser = obj;
+      console.log(this.Fromuser);
+    },
+    addxg() {
+      this.$refs.refuser.validate(async (valid) => {
+        if (!valid) return false;
+        await xgApi(this.Fromuser);
+        this.getList();
+        this.xgFormVisible = false;
+      });
+    },
   },
 };
 </script>
