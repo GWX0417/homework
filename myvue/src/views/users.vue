@@ -64,6 +64,7 @@
               type="warning"
               icon="el-icon-s-tools"
               size="mini"
+              @click="qxgl(scope.row)"
             ></el-button>
           </template>
         </el-table-column>
@@ -137,11 +138,31 @@
       </div>
     </el-dialog>
     <!-- 修改模态框区域 -->
+    <!-- 权限模态框 -->
+    <el-dialog title="分配角色" :visible.sync="qxglVisible" width="30%">
+      <p>当前用户:{{ rolrForm.username }}</p>
+      <p>当前角色:{{ rolrForm.role_name }}</p>
+      分配新角色:
+      <el-select placeholder="请选择" v-model="value">
+        <el-option
+          v-for="item in options"
+          :key="item.id"
+          :label="item.roleName"
+          :value="item.id"
+        >
+        </el-option>
+      </el-select>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="qxglVisible = false">取 消</el-button>
+        <el-button type="primary" @click="roleadd">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 权限模态框 -->
   </div>
 </template>
 
 <script>
-import { UsersApi, delApi, ztApi, tjApi, xgApi } from "@/http/api";
+import { UsersApi, delApi, ztApi, tjApi, xgApi ,jsApi ,userroles} from "@/http/api";
 export default {
   data() {
     return {
@@ -154,10 +175,13 @@ export default {
         query: "",
       },
       total: 0,
+      qxglVisible: false, //权限管理模态框显示隐藏
       //模态框显示和隐藏
       dialogFormVisible: false,
+      value:"",
       //修改模态框的显示隐藏
       xgFormVisible: false,
+      options:[],
       //添加用户
       user: {
         username: "",
@@ -180,6 +204,12 @@ export default {
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
         mobile: [{ required: true, message: "请输入手机号", trigger: "blur" }],
+      },
+      //角色分配表单
+      rolrForm: {
+        username: "",
+        role_name: "",
+        id: 0,
       },
     };
   },
@@ -264,6 +294,22 @@ export default {
         this.xgFormVisible = false;
       });
     },
+    //权限管理
+    async qxgl(obj) {
+      this.rolrForm = obj;
+      this.qxglVisible = true;
+      const res=  await jsApi()
+      console.log(res);
+      this.options = res
+    },
+    async roleadd(){
+      await userroles({
+        id:this.rolrForm.id,
+        rid:this.value
+      })
+      this.getList()
+      this.qxglVisible=false
+    }
   },
 };
 </script>

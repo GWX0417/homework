@@ -16,9 +16,9 @@
       <el-table-column prop="level" label="权限等级">
         <template slot-scope="scope">
           <div>
-            <el-tag type="primary" v-show="scope.row.level==0">一级</el-tag>
-            <el-tag type="success" v-show="scope.row.level==1">二级</el-tag>
-            <el-tag type="warning" v-show="scope.row.level==2">三级</el-tag>
+            <el-tag type="primary" v-show="scope.row.level == 0">一级</el-tag>
+            <el-tag type="success" v-show="scope.row.level == 1">二级</el-tag>
+            <el-tag type="warning" v-show="scope.row.level == 2">三级</el-tag>
           </div>
         </template>
       </el-table-column>

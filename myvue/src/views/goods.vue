@@ -29,12 +29,12 @@
         </el-table-column>
         <el-table-column prop="goods_weight" label="商品重量">
         </el-table-column>
-        <el-table-column  label="创建时间">
-            <template slot-scope="scope">
-                <div>
-                    {{scope.row.add_time|data}}
-                </div>
-            </template>
+        <el-table-column label="创建时间">
+          <template slot-scope="scope">
+            <div>
+              {{ scope.row.add_time | data }}
+            </div>
+          </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
@@ -44,6 +44,7 @@
               size="mini"
             ></el-button>
             <el-button
+              @click="del(scope.row.goods_id)"
               type="danger"
               icon="el-icon-delete"
               size="mini"
@@ -53,11 +54,25 @@
       </el-table>
       <!-- 表格区域 -->
     </el-card>
+    <!-- 分页区域 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="params.pagenum"
+      :page-sizes="[1, 2, 3, 4]"
+      :page-size="params.pagesize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    >
+    </el-pagination>
+    <!-- 分页区域 -->
+    <!-- 模态框区域 -->
+    <!-- 模态框区域 -->
   </div>
 </template>
 
 <script>
-import { goodsApi } from "@/http/api";
+import { goodsApi, goodsdel } from "@/http/api";
 export default {
   data() {
     return {
@@ -65,26 +80,57 @@ export default {
       //请求数据参数
       params: {
         pagenum: 1,
-        pagesize: 10,
+        pagesize: 6,
         query: "",
       },
+      total: 0,
     };
   },
   created() {
     this.getGoods();
   },
   methods: {
+    //商品列表渲染数据
     async getGoods() {
       const res = await goodsApi(this.params);
       console.log(res);
+      this.total = res.total;
       this.tableData = res.goods;
     },
+    handleSizeChange(size) {
+      this.params.pagesize = size;
+      this.getGoods();
+    },
+    handleCurrentChange(num) {
+      this.params.pagenum = num;
+      this.getGoods();
+    },
+    //删除商品
+    del(id) {
+      console.log(id);
+      this.$confirm("此操作将永久删除该商品, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(async () => {
+          await goodsdel(id);
+          console.log("123");
+          this.getGoods();
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
   },
-  filters:{
-      data(val){
-          return new Date(val).toLocaleString()
-      }
-  }
+  filters: {
+    data(val) {
+      return new Date(val).toLocaleString();
+    },
+  },
 };
 </script>
 

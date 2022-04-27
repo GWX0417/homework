@@ -20,86 +20,123 @@ export function AdminApi() {
   });
 }
 //封装用户列表渲染Api
-export function UsersApi(params){
+export function UsersApi(params) {
   return request({
-    url:"users",
-    method:"GET",
-    params
-  })
+    url: "users",
+    method: "GET",
+    params,
+  });
 }
 //封装单个用户删除Api
-export function delApi(data){
+export function delApi(data) {
   return request({
-    url:"users/"+data,
-    method:"DELETE"
-  })
+    url: "users/" + data,
+    method: "DELETE",
+  });
 }
 //封装修改用户状态APi
-export function ztApi(data){
+export function ztApi(data) {
   return request({
-    url:`users/${data.id}/state/${data.type}`,
-    method:"PUT"
-  })
+    url: `users/${data.id}/state/${data.type}`,
+    method: "PUT",
+  });
 }
 //封装添加用户Api
-export function tjApi(data){
+export function tjApi(data) {
   return request({
-    url:"users",
-    method:"POST",
-    data
-  })
+    url: "users",
+    method: "POST",
+    data,
+  });
 }
 //封装修改用户Api
-export function xgApi(data){
+export function xgApi(data) {
   return request({
-    url:`users/${data.id}`,
-    method:"PUT",
-    data
-  })
+    url: `users/${data.id}`,
+    method: "PUT",
+    data,
+  });
 }
 //封装角色列表渲染Api
-export function jsApi(){
+export function jsApi() {
   return request({
-    url:"roles",
-    method:"GET",
-  })
+    url: "roles",
+    method: "GET",
+  });
 }
 //封装角色添加用户Api
-export function jstjApi(data){
+export function jstjApi(data) {
   return request({
-    url:"roles",
-    method:"POST",
-    data
-  })
+    url: "roles",
+    method: "POST",
+    data,
+  });
 }
 //封装删除角色Api
-export function jsdelApi(data){
-  console.log(data);
+export function jsdelApi(data) {
   return request({
-    url:"roles/"+data,
-    method:"DELETE"
-  })
+    url: "roles/" + data,
+    method: "DELETE",
+  });
 }
 //封装修改角色Api
-export function jsxgApi(data){
+export function jsxgApi(data) {
   return request({
-    url:`roles/${data.id}`,
-    method:"PUT",
-    data
-  })
+    url: `roles/${data.id}`,
+    method: "PUT",
+    data,
+  });
 }
 //封装渲染权限Api
-export function qxApi(type){
+export function qxApi(type) {
   return request({
-    url:`rights/${type}`,
-    method:"GET"
-  })
+    url: `rights/${type}`,
+    method: "GET",
+  });
 }
 //封装渲染商品Api
-export function goodsApi(params){
+export function goodsApi(params) {
   return request({
-    url:"goods",
-    method:"GET",
-    params
+    url: "goods",
+    method: "GET",
+    params,
+  });
+}
+//封装删除商品Api
+export function goodsdel(data) {
+  return request({
+    url: "goods/" + data,
+    method: "DELETE",
+  });
+}
+//封装用户列表分配角色Api
+export function userroles(data) {
+  return request({
+    url: `users/${data.id}/role`,
+    method: "PUT",
+    data: data.rid,
+  });
+}
+
+// 权限列表的接口
+export function getRightsListApi(type) {
+  return request({
+    url: `rights/${type}`,
+    method: "GET",
+  });
+}
+// 角色标签删除接口
+export function delTagApi(roleid,rightid){
+  return request({
+    url:`roles/${roleid}/rights/${rightid}`,
+    method:'delete'
+  })
+}
+// 角色授权的接口
+export function setRightApi(roleid,rids){
+  return request({
+    url:`roles/${roleid}/rights`,
+    method:'POST',
+    data:{rids}
   })
 }
