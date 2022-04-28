@@ -42,6 +42,11 @@ export default new Router({
           name: 'goods',
           component:()=>import('../src/views/goods.vue')
         },
+        {
+          path: '/goodsadd',
+          name: 'goodsadd',
+          component:()=>import('../src/views/goodsadd.vue')
+        },
       ]
     },
   ]

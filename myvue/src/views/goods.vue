@@ -17,7 +17,7 @@
       >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button type="primary" style="margin-left: 30px">添加商品</el-button>
+      <el-button type="primary" style="margin-left: 30px" @click="addgoods">添加商品</el-button>
       <!-- 搜索区域 -->
       <el-divider></el-divider>
       <!-- 表格区域 -->
@@ -125,6 +125,10 @@ export default {
           });
         });
     },
+    //跳转到goodsadd页面
+    addgoods(){
+      this.$router.push('/goodsadd')
+    }
   },
   filters: {
     data(val) {

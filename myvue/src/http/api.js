@@ -140,3 +140,19 @@ export function setRightApi(roleid,rids){
     data:{rids}
   })
 }
+//封装商品分类Api
+export function grtGoodsApi(params){
+  return request({
+    url:"categories",
+    method:"GET",
+    params
+  })
+}
+//封装商品参数的接口
+export function getGoodsparams(cateId,sel="many"){
+  return request({
+    url:`categories/${cateId}/attributes`,
+    method:"GET",
+    params:{sel}
+  })
+}
