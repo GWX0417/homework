@@ -47,6 +47,16 @@ export default new Router({
           name: 'goodsadd',
           component:()=>import('../src/views/goodsadd.vue')
         },
+        {
+          path: '/categories',
+          name: 'categories',
+          component:()=>import('../src/views/categories.vue')
+        },
+        {
+          path: '/params',
+          name: 'params',
+          component:()=>import('../src/views/params.vue')
+        },
       ]
     },
   ]

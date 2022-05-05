@@ -27,7 +27,9 @@
         <el-step title="商品属性"></el-step>
         <el-step title="商品图片"></el-step>
         <el-step title="商品内容"></el-step>
-        <el-step title="完成"></el-step>
+        <el-step title="完成">
+          
+        </el-step>
       </el-steps>
       <!-- 步骤条 -->
       <br />
@@ -59,7 +61,6 @@
               @change="handleChange"
             ></el-cascader>
           </el-tab-pane>
-
           <el-tab-pane label="商品参数" name="1">
             <el-form-item
               :label="item1.attr_name"
@@ -85,8 +86,8 @@
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品图片" name="3">
-               <!-- headers脱离了ajax,要手动配置请求头 -->
-                   
+            <!-- headers脱离了ajax,要手动配置请求头 -->
+        
             <el-upload
               action="http://www.ysqorz.top:8888/api/private/v1/upload"
               :headers="headers"
@@ -95,14 +96,16 @@
               :on-success="handleSuccess"
               list-type="picture"
             >
-                <el-button size="small" type="primary">点击上传</el-button>  
+              <el-button size="small" type="primary">点击上传</el-button> 
               <div slot="tip" class="el-upload__tip">
                 只能上传jpg/png文件，且不超过500kb
               </div>
             </el-upload>
           </el-tab-pane>
           <el-tab-pane label="商品内容" name="4">定时任务补偿</el-tab-pane>
-          <el-tab-pane label="完成" name="5">定时任务补偿</el-tab-pane>
+          <el-tab-pane label="完成" name="5">
+            <el-button type="primary" @click="add">添加商品</el-button>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
 
@@ -112,9 +115,7 @@
 </template>
 
 <script>
-import { grtGoodsApi, getGoodsparams } from "@/http/api";
-import { escape } from "querystring";
-import { log } from "util";
+import { grtGoodsApi, getGoodsparams, addGoodsApi } from "@/http/api";
 export default {
   data() {
     return {
@@ -125,10 +126,7 @@ export default {
         goods_cat: "",
         goods_price: "",
         goods_number: "",
-        goods_weight: "",
-        goods_introduce: "",
-        pics: [],
-        attrs: [],
+        goods_weight: ""
       },
       rid: [], //当前选中数组分类级别
       catData: [], //联级框的数据源
@@ -189,7 +187,7 @@ export default {
       this.addgoodsFrom.pics.push({
         pic: res.data.tmp_path,
       });
-    }, 
+    },
     // 删除上传
     handleRemove(res) {
       console.log("删除上传", res);
@@ -198,9 +196,27 @@ export default {
       });
       this.addgoodsFrom.pics.splice(index, 1);
     },
-     handlePreview(){
-
-    }
+    handlePreview() {},
+    async add() {
+      this.addgoodsFrom.goods_cat = this.rid.join(",");
+      const dtData = this.manyParams.map((item) => {
+        return {
+          attr_id: item.attr_id,
+          attr_value: item.attr_vals.join(","),
+        };
+      });
+      const jtData = this.onlyParams.map((item) => {
+        return {
+          attr_id: item.attr_id,
+          attr_value: item.attr_vals,
+        };
+      });
+      // const arr = [...dtData, ...jtData];
+      // this.addgoodsFrom.attrs = arr;
+      await addGoodsApi(this.addgoodsFrom);
+      console.log(11);
+      this.$router.push("/goods");
+    },
   },
   computed: {
     ridEnd() {

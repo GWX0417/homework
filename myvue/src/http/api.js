@@ -126,33 +126,71 @@ export function getRightsListApi(type) {
   });
 }
 // 角色标签删除接口
-export function delTagApi(roleid,rightid){
+export function delTagApi(roleid, rightid) {
   return request({
-    url:`roles/${roleid}/rights/${rightid}`,
-    method:'delete'
-  })
+    url: `roles/${roleid}/rights/${rightid}`,
+    method: "delete",
+  });
 }
 // 角色授权的接口
-export function setRightApi(roleid,rids){
+export function setRightApi(roleid, rids) {
   return request({
-    url:`roles/${roleid}/rights`,
-    method:'POST',
-    data:{rids}
-  })
+    url: `roles/${roleid}/rights`,
+    method: "POST",
+    data: { rids },
+  });
 }
 //封装商品分类Api
-export function grtGoodsApi(params){
+export function grtGoodsApi(params) {
   return request({
-    url:"categories",
-    method:"GET",
-    params
-  })
+    url: "categories",
+    method: "GET",
+    params,
+  });
 }
 //封装商品参数的接口
-export function getGoodsparams(cateId,sel="many"){
+export function getGoodsparams(cateId, sel = "many") {
   return request({
-    url:`categories/${cateId}/attributes`,
-    method:"GET",
-    params:{sel}
+    url: `categories/${cateId}/attributes`,
+    method: "GET",
+    params: { sel },
+  });
+}
+//商品分类
+export function categoriesApi(params) {
+  return request({
+    url: "/categories",
+    method: "GET",
+    params,
+  });
+}
+export function editGoodsCateApi(data) {
+  console.log(data);
+  return request({
+    url: "/categories/" + data.cat_id,
+    method: "PUT",
+    data,
+  });
+}
+export function addGoodLitApi(data) {
+  return request({
+    url: "/categories",
+    method: "POST",
+    data,
+  });
+}
+export function addGoodsApi(data) {
+  return request({
+    url: "/goods",
+    method: "POST",
+    data,
+  });
+}
+//编辑提交参数
+export function addparams(cateId,attrId,data){
+  return request({
+    url:`categories/${cateId}/attributes/${attrId}`,
+    method:"PUT",
+    data
   })
 }
