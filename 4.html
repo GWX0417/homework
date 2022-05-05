@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="inp1 inps" />
+    <b>vs</b>
+    <input type="text" class="inp2 inps" />
+    <button class="btn">最大数是》</button>
+    <span class="sp1">?</span>
+  </body>
+  <script>
+    var btn = document.querySelector(".btn");
+    var sp1 = document.querySelector(".sp1");
+    var inps = document.querySelectorAll(".inps");
+    for (var i = 0; i < inps.length; i++) {
+        inps[i].onkeyup=function(){
+            this.value=this.value.replace(/[^\d|","]/,"")
+        }
+    }
+    btn.onclick=function(){
+        var inp1= document.querySelector('.inp1').value
+        var inp2=document.querySelector('.inp2').value
+        console.log(inp1,inp2);
+        var max =0
+        if(parseInt(inp1)>parseInt(inp2)){
+            max=parseInt(inp1)
+        }else{
+            max=parseInt(inp2)
+        }
+        sp1.innerHTML=max
+    }
+  </script>
+</html>
