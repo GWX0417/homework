@@ -1,63 +1,73 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
-    },  
-    {
-      path: '/admin',
-      name: 'admin',
-      component:()=>import('../src/views/admin.vue'),
-      redirect:'/welcome',
-      children:[
-        {
-          path: '/welcome',
-          name: 'welcome',
-          component:()=>import('../src/views/welcome.vue')
-        },
-        {
-          path: '/users',
-          name: 'users',
-          component:()=>import('../src/views/users.vue')
-        },
-        {
-          path: '/roles',
-          name: 'roles',
-          component:()=>import('../src/views/roles.vue')
-        },
-        {
-          path: '/rights',
-          name: 'rights',
-          component:()=>import('../src/views/rights.vue')
-        },
-        {
-          path: '/goods',
-          name: 'goods',
-          component:()=>import('../src/views/goods.vue')
-        },
-        {
-          path: '/goodsadd',
-          name: 'goodsadd',
-          component:()=>import('../src/views/goodsadd.vue')
-        },
-        {
-          path: '/categories',
-          name: 'categories',
-          component:()=>import('../src/views/categories.vue')
-        },
-        {
-          path: '/params',
-          name: 'params',
-          component:()=>import('../src/views/params.vue')
-        },
-      ]
+      path: "/",
+      name: "home",
+      component: Home,
     },
-  ]
-})
+    {
+      path: "/admin",
+      name: "admin",
+      component: () => import("../src/views/admin.vue"),
+      redirect: "/welcome",
+      children: [
+        {
+          path: "/welcome",
+          name: "welcome",
+          component: () => import("../src/views/welcome.vue"),
+        },
+        {
+          path: "/users",
+          name: "users",
+          component: () => import("../src/views/users.vue"),
+        },
+        {
+          path: "/roles",
+          name: "roles",
+          component: () => import("../src/views/roles.vue"),
+        },
+        {
+          path: "/rights",
+          name: "rights",
+          component: () => import("../src/views/rights.vue"),
+        },
+        {
+          path: "/goods",
+          name: "goods",
+          component: () => import("../src/views/goods.vue"),
+        },
+        {
+          path: "/goodsadd",
+          name: "goodsadd",
+          component: () => import("../src/views/goodsadd.vue"),
+        },
+        {
+          path: "/categories",
+          name: "categories",
+          component: () => import("../src/views/categories.vue"),
+        },
+        {
+          path: "/params",
+          name: "params",
+          component: () => import("../src/views/params.vue"),
+        },
+        {
+          path: "/orders",
+          name: "orders",
+          component: () => import("../src/views/orders.vue"),
+        },
+        {
+          path: "/reports",
+          name: "reports",
+          component: () => import("../src/views/reports.vue"),
+        },
+      ],
+    },
+  ],
+});

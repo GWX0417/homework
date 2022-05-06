@@ -187,10 +187,40 @@ export function addGoodsApi(data) {
   });
 }
 //编辑提交参数
-export function addparams(cateId,attrId,data){
+export function addparams(cateId, attrId, data) {
   return request({
-    url:`categories/${cateId}/attributes/${attrId}`,
-    method:"PUT",
-    data
-  })
+    url: `categories/${cateId}/attributes/${attrId}`,
+    method: "PUT",
+    data,
+  });
+}
+//删除参数
+export function delparams(id, attrid) {
+  return request({
+    url: `categories/${id}/attributes/${attrid}`,
+    method: "DELETE",
+  });
+}
+//添加参数
+export function addparamsApi(id, data) {
+  return request({
+    url: `categories/${id}/attributes`,
+    method: "POST",
+    data,
+  });
+}
+//订单列表
+export function getordersList(params) {
+  return request({
+    url: "orders",
+    method: "GET",
+    params,
+  });
+}
+//数据统计
+export function getarrival() {
+  return request({
+    url: "reports/type/1",
+    method: "GET",
+  });
 }

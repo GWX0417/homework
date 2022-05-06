@@ -13,9 +13,8 @@
       <el-table
         :data="tableData"
         border
-        style="width: 100%"
+        style="width: 100%;margin-top:20px;"
         row-key="cat_id"
-        class="mt16"
       >
         <el-table-column type="index" label="#">
           <template slot-scope="scope">
