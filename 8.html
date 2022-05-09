@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>缓动的小球</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        div {
+            background-color: hotpink;
+            position: absolute;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        /*我对整个文档进行MouseMove事件，left和top变量是指鼠标移动的那个点参照于浏览器的那个距离
+         * 在这里我把鼠标设置为始终在小球的中心，不管开始第一下鼠标点击点在小球的哪里，在移动中始终在小球中心
+         * */
+        var divs = document.getElementsByTagName("div");
+        document.onmousemove = function(event) {
+            var left = event.clientX;
+            var top = event.clientY;
+            /*这里是核心，要移动div形成美丽的变化，其实每个div的出发点和目的点是一样的，
+             *只需要改变他们之间发生的间隔。
+             * 用for遍历每次每次鼠标移动后的每一个div都去间隔定时发生style的left和top的改变
+             * 另外注意一下let操作
+             * */
+            for (let i = 0; i < divs.length; i++) {
+                divs[i].style.backgroundColor = "rgb(" + randomNum(1, 255) + "," + randomNum(1, 255) + "," + randomNum(1, 255) + ")";
+                setTimeout(function() {
+                    divs[i].style.left = left - divs[i].offsetWidth / 2 + "px";
+                    divs[i].style.top = top - divs[i].offsetWidth / 2 + "px";
+                }, 50 * i);
+            }
+        }
+
+        //生成随机数的函数
+        function randomNum(n, m) {
+            return parseInt(Math.random() * (m - n + 1) + n);
+        }
+    </script>
+</body>
+
+</html>

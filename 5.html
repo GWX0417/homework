@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: aquamarine;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">点击我就闪</div>
+</body>
+
+</html>
+<script>
+    var oBox = document.querySelector("#box")
+    var timer = null
+    oBox.onclick = function() {
+        var i = 0;
+        clearInterval(timer)
+        timer = setInterval(function() {
+            oBox.style.display = i++ % 2 ? "none" : "block"
+            i > 6 && (clearInterval(timer))
+        }, 80)
+    }
+</script>
