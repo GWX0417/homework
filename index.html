@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="box-left">
+            <div class="left-top">
+                <div class="top-name"><i>// 当前对比数据 //</i></div>
+                <div class="top-num">3,456,789</div>
+            </div>
+            <div class="left-title">
+                违法犯罪人员分析
+            </div>
+            <div class="left-pie">
+                <div id="mychart" style="width: 500px;height: 300px"></div>
+            </div>
+            <div class="left-title">
+                入口出入记录
+            </div>
+            <table class="table" cellspacing="0">
+                <thead>
+                    <th>姓名</th>
+                    <th>角色</th>
+                    <th>开门方式</th>
+                    <th>时间</th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>张梦</td>
+                        <td>访客</td>
+                        <td>人脸</td>
+                        <td>2018-11-01 13:51:00</td>
+                    </tr>
+                    <tr>
+                        <td>李阳荣</td>
+                        <td>老板</td>
+                        <td>手动</td>
+                        <td>2012-11-01 13:51:00</td>
+                    </tr>
+                    <tr>
+                        <td>张无忌</td>
+                        <td>老板娘</td>
+                        <td>人脸</td>
+                        <td>2018-11-01 13:51:00</td>
+                    </tr>
+                    <tr>
+                        <td>张三丰</td>
+                        <td>访客</td>
+                        <td>人脸</td>
+                        <td>2018-11-01 13:51:00</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="box-center">
+            <div class="center-top">
+                <div>
+                    <img src="./素材图//jinghui.png" alt="">
+                    <span>智慧社区内网对比平台</span>
+                </div>
+            </div>
+            <div class="center-data">
+                <div class="data">
+                    <div class="a"></div>
+                    <div class="b"></div>
+                </div>
+                <div>
+
+                </div>
+                <div class="caty">
+                    <p>NO.1北京 : 123456人</p>
+                    <p>NO.1天津 : 1556人</p>
+                    <p>NO.1河北 : 123人</p>
+                </div>
+
+            </div>
+            <div class="center-title">
+                犯罪人口来源分析
+            </div>
+        </div>
+        <div class="box-right">
+            <div class="left-title">
+                违法犯罪人员年龄分布
+            </div>
+            <div class="center-pie">
+                <div class="mychart" style="width: 500px;height: 220px"></div>
+            </div>
+            <div class="left-title">
+                违法犯罪人员地区分布
+            </div>
+            <div class="center-zzt">
+                <div class="zzt" style="width: 500px;height: 200px">
+
+                </div>
+                <div class="left-title">
+                    入口出入时间段统计
+                </div>
+                <div class="center-zxt">
+                    <div class="zxt" style="width: 500px;height: 200px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="./echarts.min.js"></script>
+<script src="./index.js"></script>
+
+</html>
