@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .box {
+        width: 550px;
+        height: 80px;
+        border: 1px solid #000;
+        margin: 20px auto;
+      }
+
+      ul {
+        list-style: none;
+        float: left;
+      }
+
+      li {
+        width: 20px;
+        height: 20px;
+        border: 1px solid salmon;
+        float: left;
+        margin-left: 5px;
+      }
+
+      span {
+        float: left;
+      }
+
+      .pj {
+        float: right;
+        font-size: 10px;
+      }
+
+      .text {
+        font-size: 10px;
+      }
+
+      .bg {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div style="height: 20px; border: 1px solid #eee">
+        <span>点击就能打分</span>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <span class="pj"></span>
+      </div>
+
+      <br />
+      <div class="text"></div>
+    </div>
+  </body>
+</html>
+<script>
+  var content = [
+    "很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+    "不满意|部分有破损，与卖家描述的不符，不满意",
+    "一般|质量一般，没有卖家描述的那么好",
+    "满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+    "非常满意|质量非常好，与卖家描述的完全一致，非常满意",
+  ];
+  var lis = document.querySelectorAll("li");
+  var text = document.querySelector(".text");
+  var pj = document.querySelector(".pj");
+  for (let i = 0; i < lis.length; i++) {
+    lis[i].onclick = function () {
+      pj.innerHTML = content[i];
+      let index = i;
+      for (let j = 0; j <= index; j++) {
+        lis[j].classList.add("bg");
+      }
+    };
+    lis[i].onmousemove = function () {
+      text.innerHTML = content[i];
+      let index = i;
+      for (let j = 0; j <= index; j++) {
+        lis[j].classList.add("bg");
+      }
+    };
+    lis[i].onmouseout = function () {
+      text.innerHTML = "";
+      let index = i;
+      for (let j = index; j < lis.length; j++) {
+        lis[j].classList.remove("bg");
+      }
+      lis[index].classList.add("bg");
+    };
+  }
+</script>

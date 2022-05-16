@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        pre {
+            height: 150px;
+            width: 100%;
+            border: 1px darkcyan dashed;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 500px;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<pre>
+    红色方块为键盘操作区域，你可以进行如下操作
+    上 下 左 右
+    ctrl+1 背景变为绿色
+    ctrl+2 背景变为黄色
+    ctrl+3 背景变为蓝色
+    ctrl+上 放大
+    ctrl+下 缩小
+</pre>
+<div></div>
+
+</html>
+<script>
+    var box = document.querySelector("div")
+    var lock = false
+    document.onkeyup = function(event) {
+        if (event.keyCode == 37) {
+            box.style.left = box.offsetLeft - 10 + "px"
+        } else if (event.keyCode == 38) {
+            box.style.top = box.offsetTop - 10 + "px"
+        } else if (event.keyCode == 40) {
+            box.style.top = box.offsetTop + 10 + "px"
+        } else if (event.keyCode == 39) {
+            box.style.left = box.offsetLeft + 10 + "px"
+        }
+        line()
+    }
+
+    function line() {
+        if (box.offsetLeft <= 0) {
+            box.style.left = 0
+        } else if (box.offsetTop <= 0) {
+            box.style.top = 0
+        }
+    }
+    document.onkeydown = function(event) {
+        eventCtrl = event.ctrlKey
+        if (eventCtrl) {
+            if (event.keyCode == 49) {
+                box.style.backgroundColor = "green"
+            } else if (event.keyCode == 50) {
+                box.style.backgroundColor = "yellow"
+            } else if (event.keyCode == 51) {
+                box.style.backgroundColor = "blue"
+            }
+        }
+    }
+</script>

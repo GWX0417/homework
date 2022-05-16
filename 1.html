@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        li {
+            color: #fff;
+            width: 100px;
+            height: 40px;
+            background-color: #000;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <span>站长之家</span>
+        </li>
+        <li>
+            <span>行业资讯</span>
+        </li>
+        <li>
+            <span>站长在线</span>
+        </li>
+        <li>
+            <span>网站运营</span>
+        </li>
+        <li>
+            <span>设计在线</span>
+        </li>
+        <li>
+            <span>网络编程</span>
+        </li>
+        <li>
+            <span>联盟咨询</span>
+        </li>
+        <li>
+            <span>服务器</span>
+        </li>
+    </ul>
+</body>
+
+</html>
+<script>
+    var lis = document.querySelectorAll("li")
+    for (let i = 0; i < lis.length; i++) {
+        lis[i].onmousemove = function() {
+            this.style.fontWeight = 800
+        }
+        lis[i].onmouseout = function() {
+            this.style.fontWeight = "normal"
+        }
+    }
+</script>
